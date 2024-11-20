@@ -1,0 +1,20 @@
+class firstprogram {
+
+public static void main (String[] args)
+
+{
+
+system.out.println("StudentId : 2413110541");
+system.out.println("StudentName : Navapat Wanaree");
+system.out.println("Topic : git hub");
+system.out.println("date : 11/20/2024");
+
+JOptionPane.showMessageDialog(null, 
+"StudentId : 2413110541"+
+"StudentName : Navapat Wanaree"+
+"Topic : git hub"+
+"date : 11/20/2024",
+"title dialog box",
+JOptionPane.ERROR_MESSAGE);
+
+}
