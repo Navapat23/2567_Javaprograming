@@ -1,0 +1,99 @@
+Lab03
+import javax.swing.*;
+
+
+public class sheet03 {
+    public static void main(String[] args) {
+        
+        String input = JOptionPane.showInputDialog("Input Time Parking (minute):");
+        int minutes = Integer.parseInt(input);
+
+     
+        int hours = minutes / 60;
+        int remainingMinutes = minutes % 60;
+
+     
+        double fee = (hours * 50) + (remainingMinutes * 0.25);
+
+       
+        String message = "You parking " + hours + " Hour " + remainingMinutes + " Minute.\n"
+                + "Amount to be paid is " + fee + " baht.";
+        JOptionPane.showMessageDialog(null, message);
+    }
+}
+Lab04
+import java.text.DecimalFormat;
+
+import javax.swing.*;
+
+public class labsheet04 {
+    public static void main(String[] args) {
+    	DecimalFormat frm = new DecimalFormat("#,###.0");
+        
+        JOptionPane.showMessageDialog(null, "Welcome to the payroll application");
+
+        // รับข้อมูลจากผู้ใช้ผ่าน Dialog Box
+        String employeeName = JOptionPane.showInputDialog(null, "Enter employee name ", JOptionPane.QUESTION_MESSAGE);
+
+        String hoursWorkedString = JOptionPane.showInputDialog(null, "Enter total hours for this Employee", JOptionPane.QUESTION_MESSAGE);
+        double hoursWorked = Double.parseDouble(hoursWorkedString);
+
+      
+        double wage = 7.5;
+        double grossearning = hoursWorked * wage ;
+        double taxrate = 0.15;
+        double taxall = grossearning * taxrate;
+        double netEarnings = grossearning - taxrate;
+
+      
+
+        String output = String.format(
+                "Employee name: " +  employeeName+
+                "\nHours worked:" + frm.format(hoursWorked)+
+                "\nHourly wage:" + wage+
+                "\nGross earnings:" + frm.format(grossearning)+
+                "\nTax rate:" + taxrate +
+                "\nTax:" + taxall+
+                "\nNet earnings: "+ frm.format(netEarnings));
+
+            JOptionPane.showMessageDialog(null, output);
+    }
+}
+ lab05
+import javax.swing.JOptionPane;
+
+public class lab05 {
+    public static void main(String[] args) {
+        final double TAX_RATE = 0.0625; // 
+       
+        String cdId = JOptionPane.showInputDialog(null, "Please enter the ID of the CD:", "CD Information", JOptionPane.QUESTION_MESSAGE);
+        String cdTitle = JOptionPane.showInputDialog(null, "Please enter the title of the CD:", "CD Information", JOptionPane.QUESTION_MESSAGE);
+        
+        String cdPriceString = JOptionPane.showInputDialog(null, "Please enter the price of the CD in US dollars:", "CD Information", JOptionPane.QUESTION_MESSAGE);
+        double cdPrice = Double.parseDouble(cdPriceString);
+
+        String cdQuantityString = JOptionPane.showInputDialog(null, "Please enter the quantity to be purchased:", "CD Information", JOptionPane.QUESTION_MESSAGE);
+        int cdQuantity = Integer.parseInt(cdQuantityString);
+
+       
+        double cdSubtotal = cdPrice * cdQuantity;
+        double cdTax = cdSubtotal * TAX_RATE;
+        double cdTotal = cdSubtotal + cdTax;
+
+       
+        String output = String.format(
+            "Summary of the transaction:\n" +
+            "CD ID: %s\n" +
+            "CD Title: %s\n" +
+            "CD Unit Price: $%.2f\n" +
+            "CD Quantity: %d\n" +
+            "Subtotal: $%.2f\n" +
+            "Tax rate: %.2f%%\n" +
+            "Total: $%.2f\n\n" +
+            "End of Program",
+            cdId, cdTitle, cdPrice, cdQuantity, cdSubtotal, TAX_RATE * 100, cdTotal
+        );
+
+        JOptionPane.showMessageDialog(null, output, "Transaction Summary", JOptionPane.INFORMATION_MESSAGE);
+    }
+}
