@@ -1,0 +1,215 @@
+package labsheet;
+import java.util.*;
+public class labsheet04 {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		
+		System.out.print("Input value of X : ");
+		int x = input.nextInt();
+		
+		System.out.print("Input value of Y : ");
+		int y = input.nextInt();
+		
+		while (y<=x) {
+			System.out.print("Input value of Y, again : ");
+			y = input.nextInt();
+			
+		}
+		int sum = x;
+		
+		for(int i =1; sum <=y; i++) {
+			int value = x + i;
+			
+			System.out.println(sum+"+"+value+"="+(sum+value));
+			sum+=value;
+		}
+		input.close();
+
+	}
+
+package labsheet;
+import javax.swing.JOptionPane;
+
+public class labsheet06 {
+    public static void main(String[] args) {
+        
+        final int VANILLA = 10;
+        final int CHOCOLATE = 15;
+        final int TOPPING = 5;
+
+        int flavorPrice = 0; 
+        String flavorChoice = "";
+
+        
+        while (true) {
+            String input = JOptionPane.showInputDialog(null,
+                    "[1] Vanilla Flavor 10 B.\n[2] Chocolate Flavor 15 B.\nPress number to choose flavor:",
+                    "Icecream Selection", JOptionPane.QUESTION_MESSAGE);
+
+           
+            if (input == null) { 
+                JOptionPane.showMessageDialog(null, "Cancelled!", "Error", JOptionPane.ERROR_MESSAGE);
+                System.exit(0);
+            }
+
+            int choice = Integer.parseInt(input);
+
+            // ใช้ Conditional Operator ตรวจสอบตัวเลือก
+            flavorPrice = (choice == 1) ? VANILLA : (choice == 2) ? CHOCOLATE : 0;
+            flavorChoice = (choice == 1) ? "Vanilla" : (choice == 2) ? "Chocolate" : "";
+
+            if (flavorPrice > 0) {
+                break; 
+            } else {
+                JOptionPane.showMessageDialog(null, "ERROR: Wrong choice! Try again...", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+      
+        int addTopping = JOptionPane.showConfirmDialog(null, "Do you want to add topping?", "Topping Selection",
+                JOptionPane.YES_NO_OPTION);
+
+       
+        int totalPrice = flavorPrice + ((addTopping == JOptionPane.YES_OPTION) ? TOPPING : 0);
+        String toppingMessage = (addTopping == JOptionPane.YES_OPTION) ? "with Topping" : "No topping";
+
+        String resultMessage = "You choose " + flavorChoice + " Flavor\n" +
+                toppingMessage + "\n" +
+                "Total price = " + totalPrice + " Baht";
+
+        JOptionPane.showMessageDialog(null, resultMessage, "Order Summary", JOptionPane.INFORMATION_MESSAGE);
+    }
+}
+
+
+
+}
+
+package labsheet;
+import java.util.Scanner;
+
+public class labsheet07 {
+    public static void main(String[] args) {
+        final double TAX_RATE_ABOVE_0 = 0.0;
+        final double TAX_RATE_ABOVE_20000 = 0.1;
+        final double TAX_RATE_ABOVE_40000 = 0.2;
+        final double TAX_RATE_ABOVE_60000 = 0.3;
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the taxable income: $ ");
+        double income = scanner.nextDouble();
+        double taxPayable;
+
+        if (income <= 20000) {
+            taxPayable = income * TAX_RATE_ABOVE_0;
+        } else if (income <= 40000) {
+            taxPayable = (20000 * TAX_RATE_ABOVE_0) + (income - 20000) * TAX_RATE_ABOVE_20000;
+        } else if (income <= 60000) {
+            taxPayable = (20000 * TAX_RATE_ABOVE_0) + (20000 * TAX_RATE_ABOVE_20000) + (income - 40000) * TAX_RATE_ABOVE_40000;
+        } else {
+            taxPayable = (20000 * TAX_RATE_ABOVE_0) + (20000 * TAX_RATE_ABOVE_20000) + (20000 * TAX_RATE_ABOVE_40000) + (income - 60000) * TAX_RATE_ABOVE_60000;
+        }
+
+        System.out.printf("The income tax payable is: $%.2f%n", taxPayable);
+        scanner.close();
+    }
+}
+
+
+package labsheet;
+import java.util.Scanner;
+
+public class labsheet08 {
+    public static void main(String[] args) {
+    
+        final int SALARY_CEILING = 6000;
+        final double EMPLOYEE_RATE_55_AND_BELOW = 0.2;
+        final double EMPLOYER_RATE_55_AND_BELOW = 0.17;
+        final double EMPLOYEE_RATE_55_TO_60 = 0.13;
+        final double EMPLOYER_RATE_55_TO_60 = 0.13;
+        final double EMPLOYEE_RATE_60_TO_65 = 0.075;
+        final double EMPLOYER_RATE_60_TO_65 = 0.09;
+        final double EMPLOYEE_RATE_ABOVE_65 = 0.05;
+        final double EMPLOYER_RATE_ABOVE_65 = 0.075;
+
+     
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the monthly salary: ");
+        int salary = scanner.nextInt();
+        System.out.print("Enter the age: ");
+        int age = scanner.nextInt();
+
+     
+        int contributableSalary = Math.min(salary, SALARY_CEILING);
+
+      
+        double employeeContribution = 0.0;
+        double employerContribution = 0.0;
+
+        if (age <= 55) {
+            employeeContribution = contributableSalary * EMPLOYEE_RATE_55_AND_BELOW;
+            employerContribution = contributableSalary * EMPLOYER_RATE_55_AND_BELOW;
+        } else if (age <= 60) {
+            employeeContribution = contributableSalary * EMPLOYEE_RATE_55_TO_60;
+            employerContribution = contributableSalary * EMPLOYER_RATE_55_TO_60;
+        } else if (age <= 65) {
+            employeeContribution = contributableSalary * EMPLOYEE_RATE_60_TO_65;
+            employerContribution = contributableSalary * EMPLOYER_RATE_60_TO_65;
+        } else {
+            employeeContribution = contributableSalary * EMPLOYEE_RATE_ABOVE_65;
+            employerContribution = contributableSalary * EMPLOYER_RATE_ABOVE_65;
+        }
+
+       
+        double totalContribution = employeeContribution + employerContribution;
+
+      
+        System.out.printf("The employee's contribution is: $%.2f%n", employeeContribution);
+        System.out.printf("The employer's contribution is: $%.2f%n", employerContribution);
+        System.out.printf("The total contribution is: $%.2f%n", totalContribution);
+
+        scanner.close();
+    }
+}
+
+package labsheet;
+
+import java.util.Scanner;
+
+public class labsheet09 {
+    public static void main(String[] args) {
+        // สร้างตัวแปรที่ใช้ในโปรแกรม
+        final int BASE_SALARY = 1000;     
+        final double COMMISSION_RATE = 0.15; 
+        final int STOP_SIGNAL = -1;         
+        
+        int sales;       
+        double salary;   
+
+        Scanner input = new Scanner(System.in); 
+        
+        while (true) { 
+            System.out.print("Enter sales in dollars (or -1 to end): "); 
+            sales = input.nextInt(); 
+            
+            if (sales == STOP_SIGNAL) { // 
+                System.out.println("BYE!");
+                break; 
+            }
+            
+            
+            salary = BASE_SALARY + (sales * COMMISSION_RATE);
+            
+          
+            System.out.printf("Salary is : $%.2f\n", salary);
+        }
+        
+        input.close(); 
+    }
+}
+
+
+
+
+

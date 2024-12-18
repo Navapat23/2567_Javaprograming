@@ -1,0 +1,94 @@
+package labsheet3;
+import javax.swing.JOptionPane;
+
+public class Lab303_1 {
+    public static void main(String[] args) {
+        String sentence1 = JOptionPane.showInputDialog("Input a sentence:");
+        String sentence2 = JOptionPane.showInputDialog("Input a sentence, again:");
+
+        int spaceCount = 0;
+        for (char c : sentence2.toCharArray()) {
+            if (c == ' ') spaceCount++;
+        }
+
+        int wordCount = spaceCount + 1;
+
+        String message = "This sentence has " + spaceCount + " spacebar.\n" +
+                         "This sentence has " + wordCount + " word.";
+        JOptionPane.showMessageDialog(null, message);
+    }
+}
+
+
+package labsheet3;
+import javax.swing.JOptionPane;
+
+public class Lab304 {
+    public static void main(String[] args) {
+        String fullName = JOptionPane.showInputDialog("Enter your full name:");
+        
+
+        int spaceIndex = fullName.indexOf(' ');
+
+        if (spaceIndex > 0 && spaceIndex < fullName.length() - 1) {
+            String firstName = fullName.substring(0, spaceIndex);
+            String lastName = fullName.substring(spaceIndex + 1);
+
+            String result = "Full Name: " + firstName + " " + lastName +
+                            "\nFirst Name: " + firstName +
+                            "\nLast Name: " + lastName;
+            JOptionPane.showMessageDialog(null, result);
+        } else {
+            JOptionPane.showMessageDialog(null, "Full Name: " + fullName + "\nIncorrect Name");
+        }
+    }
+}
+
+
+package labsheet3;
+import javax.swing.JOptionPane;
+
+public class Lab306 {
+    public static void main(String[] args) {
+        String message = JOptionPane.showInputDialog("Enter a message:");
+
+        if (message.toLowerCase().contains("nichi")) {
+            JOptionPane.showMessageDialog(null, "Message: " + message + "\nNichi is in the sentence.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Message: " + message);
+        }
+    }
+}
+
+
+package labsheet3;
+import javax.swing.JOptionPane;
+
+public class Lab307 {
+    public static void main(String[] args) {
+        String text = JOptionPane.showInputDialog("Enter a text:");
+
+       
+        String cleanText = text.replaceAll("\\s+", "").toLowerCase();
+
+     
+        if (isPalindrome(cleanText)) {
+            JOptionPane.showMessageDialog(null, "Text: " + text + "\nIt is palindrome");
+        } else {
+            JOptionPane.showMessageDialog(null, "Text: " + text + "\nIt is not palindrome");
+        }
+    }
+
+    public static boolean isPalindrome(String str) {
+        int left = 0, right = str.length() - 1;
+
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
