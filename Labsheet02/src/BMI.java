@@ -26,6 +26,7 @@ public class BMI {
 		else if (BMI>=30.0)
 		{
 			JOptionPane.showMessageDialog(null, frm.format(BMI)+"You'reObesity");
+			
 		}
 		
 	}
